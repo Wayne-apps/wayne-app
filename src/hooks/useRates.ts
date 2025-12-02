@@ -2,7 +2,9 @@ import { parseCnbTxt, type Data } from "@/functions/parseCnbTxt";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const BASE_URL = import.meta.env.PROD ? "https://www.cnb.cz" : "/cnb";
+const BASE_URL = import.meta.env.PROD
+  ? "https://cors-anywhere.herokuapp.com/https://www.cnb.cz"
+  : "/cnb";
 
 export function useRates() {
   return useQuery({
