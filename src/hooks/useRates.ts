@@ -2,12 +2,14 @@ import { parseCnbTxt, type Data } from "@/functions/parseCnbTxt";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+const BASE_URL = import.meta.env.PROD ? "https://www.cnb.cz" : "/cnb";
+
 export function useRates() {
   return useQuery({
     queryKey: ["cnb-rates"],
     queryFn: async (): Promise<Data> => {
       const res = await axios.get(
-        "/cnb/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt",
+        `${BASE_URL}/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt`,
         {
           responseType: "text",
           headers: { "Cache-Control": "no-cache" },
